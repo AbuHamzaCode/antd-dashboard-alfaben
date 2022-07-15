@@ -33,11 +33,78 @@ const toggler = [
   </svg>,
 ];
 
+const data = [
+  {
+    avatar: (
+      <Button
+        style={{
+          height: "fit-content",
+          borderColor: "#fff",
+        }}
+      >
+        <img src={logout} alt="" />
+      </Button>
+    ),
+  },
+  {
+    avatar: (
+      <Button
+        style={{
+          height: "fit-content",
+          borderColor: "#fff",
+        }}
+      >
+        <img style={{ paddingRight: 15 }} src={headImage} alt="" />
+      </Button>
+    ),
+  },
+  {
+    avatar: (
+      <Button
+        style={{
+          height: "fit-content",
+          borderColor: "#fff",
+        }}
+      >
+        <img src={notificationStatus} alt="" />
+      </Button>
+    ),
+  },
+  {
+    avatar: (
+      <Select defaultValue="en" style={{ width: 80 }} bordered={false}>
+        <Option value="tr">
+          <img style={{ width: 30, height: 30 }} src={tr} alt="" />
+        </Option>
+        <Option value="ru">
+          <img style={{ width: 30, height: 30 }} src={ru} alt="" />
+        </Option>
+        <Option value="en">
+          <img style={{ width: 30, height: 30 }} src={en} alt="" />
+        </Option>
+      </Select>
+    ),
+  },
+];
+
+const menu = (
+  <List
+    min-width="100%"
+    className="header-notifications-dropdown "
+    itemLayout="horizontal"
+    dataSource={data}
+    renderItem={(item) => (
+      <List.Item>
+        <List.Item.Meta  avatar={item.avatar} />
+      </List.Item>
+    )}
+  />
+);
 
 const HeadDash = (onPress) => {
   const [visible, setVisible] = useState(false);
 
-  const showDrawer = () => setVisible(true);
+  const showDrawer = () => setVisible(!visible);
 
   return (
     <>
@@ -64,13 +131,6 @@ const HeadDash = (onPress) => {
               <img style={{ width: 30, height: 30 }} src={en} alt="" />
             </Option>
           </Select>
-          <Button
-            type="link"
-            className="sidebar-toggler"
-            onClick={() => onPress()}
-          >
-            {toggler}
-          </Button>
           <Button
             style={{
               height: "fit-content",
@@ -99,6 +159,15 @@ const HeadDash = (onPress) => {
           >
             <img src={logout} alt="" />
           </Button>
+          <Dropdown overlay={menu} trigger={["click"]}>
+            <a
+              href="#pablo"
+              className="ant-dropdown-link"
+              onClick={(e) => e.preventDefault()}
+            >
+              {toggler}
+            </a>
+          </Dropdown>
         </Col>
       </Row>
     </>

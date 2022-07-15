@@ -1,5 +1,5 @@
 import { Badge, Breadcrumb, Col, Layout, Menu, Row } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import ALFAalfa from "../../assets/images/ALFAalfa.png";
 import Vectorv from "../../assets/images/Vectorv.svg";
@@ -20,13 +20,30 @@ import ContentDash from "./ContentDash";
 
 const { Header, Sider, Content } = Layout;
 
-
 const SideDash = () => {
   const [collapsed, setCollapsed] = useState(false);
 
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+  }, []);
+
+  const resize = () => {
+    if (window.innerWidth <= 900) {
+      setCollapsed(true);
+    } else {
+      setCollapsed(false);
+    }
+  };
+
   return (
     <Layout className="layout-dashboard" style={{ minHeight: "100vh" }}>
-      <Sider width={275} theme="light" trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        style={{ width: "100%" }}
+        theme="light"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
         {React.createElement(
           collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
           {
@@ -39,7 +56,7 @@ const SideDash = () => {
           <img style={{ width: 58, height: 65 }} src={Xx} alt="" />
         </div>
         <Menu
-        style={{ paddingLeft: 10}}
+          style={{ paddingLeft: 20 }}
           theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
@@ -123,9 +140,7 @@ const SideDash = () => {
             },
           ]}
         />
-        <div
-          className="aside-footer"
-        >
+        <div className="aside-footer">
           <hr />
           <div style={{ marginLeft: 10 }}>
             <h4>
@@ -145,7 +160,7 @@ const SideDash = () => {
           style={{
             padding: "0 30px 0 0",
             position: "relative",
-
+            width: "100%",
           }}
         >
           <HeadDash></HeadDash>
@@ -157,10 +172,11 @@ const SideDash = () => {
             padding: "50px 20px 0 35px",
             minHeight: 280,
             position: "relative",
-            background: '#E7E5E5',
+            background: "#E7E5E5",
+            width: "100%",
           }}
         >
-         <ContentDash></ContentDash>
+          <ContentDash></ContentDash>
         </Content>
       </Layout>
     </Layout>

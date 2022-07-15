@@ -97,12 +97,13 @@ const columns = [
         }}
       >
         <Select
-          placeholder={action}
+          defaultValue="action"
           bordered={false}
-          style={{ color: "white" }}
+          style={{ color: "#fff", }}
         >
           <Option value="delete">Delete</Option>
           <Option value="update">Update</Option>
+          <Option value="action">{action}</Option>
         </Select>
       </Button>
     ),
@@ -322,7 +323,7 @@ const ContentDash = () => {
   return (
     <>
       <Row gutter={[24, 16]} style={{ marginBottom: "4%" }}>
-        <Col span={24} md={16}>
+        <Col flex="50%">
           <Input
             style={{ borderRadius: 8, minHeight: 40 }}
             size="large"
@@ -330,7 +331,7 @@ const ContentDash = () => {
             prefix={<SearchOutlined style={{ color: "#BDBDBD" }} />}
           />
         </Col>
-        <Col span={24} md={2}>
+        <Col  flex="10%">
           <Button
             size="large"
             style={{
@@ -344,7 +345,7 @@ const ContentDash = () => {
             <span style={{ color: "#FAFAFA" }}>Export</span>
           </Button>
         </Col>
-        <Col span={24} md={2}>
+        <Col flex="10%">
           <Button
             size="large"
             style={{
@@ -358,7 +359,7 @@ const ContentDash = () => {
             <span style={{ color: "#FAFAFA" }}>Filters</span>
           </Button>
         </Col>
-        <Col span={24} md={2}>
+        <Col flex="10%">
           <Button
             danger
             size="large"
@@ -379,11 +380,9 @@ const ContentDash = () => {
         rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
-        style={{ maxWidth: "95%",}}
+        style={{ maxWidth: "95%", }}
         pagination={{
-          // selectComponentClass,
           showSizeChanger: true,
-          position: ["bottomLeft"],
           total: 100,
           showTotal: (total, range) =>
             `Showing ${range[0]} to ${range[1]} of ${total} entries`,
