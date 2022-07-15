@@ -1,8 +1,7 @@
-import { Badge, Breadcrumb, Col, Layout, Menu, Row } from "antd";
+import { Layout, Menu, } from "antd";
 import React, { useEffect, useState } from "react";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import ALFAalfa from "../../assets/images/ALFAalfa.png";
-import Vectorv from "../../assets/images/Vectorv.svg";
 import Item1 from "../../assets/images/Item1.svg";
 import Item2 from "../../assets/images/Item2.svg";
 import Item3 from "../../assets/images/Item3.svg";
@@ -36,9 +35,9 @@ const SideDash = () => {
   };
 
   return (
-    <Layout className="layout-dashboard" style={{ minHeight: "100vh" }}>
+    <Layout className="layout-dashboard" style={{ minHeight: "100vh", minWidth: "100vh" }}>
       <Sider
-        style={{ width: "100%" }}
+        width={250}
         theme="light"
         trigger={null}
         collapsible
@@ -51,12 +50,12 @@ const SideDash = () => {
             onClick: () => setCollapsed(!collapsed),
           }
         )}
-        <div className="logo">
+        <div className="logo" style={{ display: "inline-block", marginBottom: 20, marginLeft: collapsed ? 20 : 40}}>
           <img style={{ width: 58, height: 16 }} src={ALFAalfa} alt="" />
           <img style={{ width: 58, height: 65 }} src={Xx} alt="" />
         </div>
         <Menu
-          style={{ paddingLeft: 20 }}
+          style={{ paddingLeft: collapsed ? 10 : 20, }}
           theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}

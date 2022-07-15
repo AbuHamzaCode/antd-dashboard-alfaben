@@ -2,16 +2,13 @@ import {
   Dropdown,
   Row,
   Col,
-  Badge,
   Breadcrumb,
   List,
-  Avatar,
   Button,
 } from "antd";
-import { BellFilled, NotificationOutlined } from "@ant-design/icons";
 import React from "react";
 import { Select } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import headImage from "../../assets/images/header-image.svg";
 import logout from "../../assets/images/logout.svg";
 import ru from "../../assets/images/Russian-flag.svg";
@@ -95,79 +92,99 @@ const menu = (
     dataSource={data}
     renderItem={(item) => (
       <List.Item>
-        <List.Item.Meta  avatar={item.avatar} />
+        <List.Item.Meta avatar={item.avatar} />
       </List.Item>
     )}
   />
 );
 
 const HeadDash = (onPress) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [md, setMd] = useState(18);
 
-  const showDrawer = () => setVisible(!visible);
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+  }, []);
+
+  const resize = () => {
+    if (window.innerWidth <= 900) {
+      setVisible(false);
+      setMd(8);
+    } else {
+      setVisible(true);
+      setMd(18);
+    }
+  };
 
   return (
     <>
-      <Row gutter={[24, 0]}>
-        <Col span={24} md={6}>
+      <Row gutter={[24, 0]} style={{ justifyContent: "space-between"}}>
+        <Col >
           <Breadcrumb className="header-breadcrumb">
             <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
             <Breadcrumb.Item>List</Breadcrumb.Item>
           </Breadcrumb>
         </Col>
-        <Col span={24} md={18} className="header-control">
-          <Select
-            defaultValue="en"
-            style={{ width: 80, marginTop: 15 }}
-            bordered={false}
-          >
-            <Option value="tr">
-              <img style={{ width: 30, height: 30 }} src={tr} alt="" />
-            </Option>
-            <Option value="ru">
-              <img style={{ width: 30, height: 30 }} src={ru} alt="" />
-            </Option>
-            <Option value="en">
-              <img style={{ width: 30, height: 30 }} src={en} alt="" />
-            </Option>
-          </Select>
-          <Button
-            style={{
-              height: "fit-content",
-              borderColor: "#fff",
-              margin: "15px 15px 0 0",
-            }}
-          >
-            <img src={notificationStatus} alt="" />
-          </Button>
-          <Button
-            style={{
-              height: "fit-content",
-              borderColor: "#fff",
-              margin: "5px 30px 0 0",
-            }}
-          >
-            <img style={{ paddingRight: 15 }} src={headImage} alt="" />
-            <span style={{ color: "grey", paddingRight: 10 }}>John Doe</span>
-          </Button>
-          <Button
-            style={{
-              height: "fit-content",
-              borderColor: "#fff",
-              marginTop: 15,
-            }}
-          >
-            <img src={logout} alt="" />
-          </Button>
-          <Dropdown overlay={menu} trigger={["click"]}>
-            <a
-              href="#pablo"
-              className="ant-dropdown-link"
-              onClick={(e) => e.preventDefault()}
-            >
-              {toggler}
-            </a>
-          </Dropdown>
+        <Col className="header-control">
+          {visible ? (
+            <>
+              <Select
+                defaultValue="en"
+                style={{ width: 80, marginTop: 15 }}
+                bordered={false}
+              >
+                <Option value="tr">
+                  <img style={{ width: 30, height: 30 }} src={tr} alt="" />
+                </Option>
+                <Option value="ru">
+                  <img style={{ width: 30, height: 30 }} src={ru} alt="" />
+                </Option>
+                <Option value="en">
+                  <img style={{ width: 30, height: 30 }} src={en} alt="" />
+                </Option>
+              </Select>
+              <Button
+                style={{
+                  height: "fit-content",
+                  borderColor: "#fff",
+                  margin: "15px 15px 0 0",
+                }}
+              >
+                <img src={notificationStatus} alt="" />
+              </Button>
+              <Button
+                style={{
+                  height: "fit-content",
+                  borderColor: "#fff",
+                  margin: "5px 30px 0 0",
+                }}
+              >
+                <img style={{ paddingRight: 15 }} src={headImage} alt="" />
+                <span style={{ color: "grey", paddingRight: 10 }}>
+                  John Doe
+                </span>
+              </Button>
+              <Button
+                style={{
+                  height: "fit-content",
+                  borderColor: "#fff",
+                  marginTop: 15,
+                }}
+              >
+                <img src={logout} alt="" />
+              </Button>
+            </>
+          ) : (
+            <Dropdown overlay={menu} trigger={["click"]}>
+              <a
+                href="#pablo"
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                {toggler}
+              </a>
+            </Dropdown>
+          )}
         </Col>
       </Row>
     </>

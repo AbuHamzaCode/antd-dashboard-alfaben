@@ -1,14 +1,10 @@
 import {
-  Avatar,
-  Card,
   Row,
   Col,
   Input,
   Button,
   Table,
   Select,
-  Space,
-  Pagination,
 } from "antd";
 import React, { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
@@ -30,13 +26,13 @@ const columns = [
     title: "Customer Name",
     dataIndex: "name",
     key: "name",
-    width: "15%",
+    width: "20%",
   },
   {
     title: "Phone Number",
     dataIndex: "phone",
     key: "phone",
-    width: "15%",
+    width: "14%",
     align: "center",
     render: (phone) => <span style={{ color: "#A8B0B9" }}>{phone}</span>,
   },
@@ -99,7 +95,7 @@ const columns = [
         <Select
           defaultValue="action"
           bordered={false}
-          style={{ color: "#fff", }}
+          style={{ color: "#fff" }}
         >
           <Option value="delete">Delete</Option>
           <Option value="update">Update</Option>
@@ -129,7 +125,7 @@ const names = [
       alt=""
     />
     <div style={{ display: "inline-block" }}>
-      <p style={{ color: "#A8B0B9", marginBottom: 0 }}>Alx Smith</p>
+      <p style={{ color: "#A8B0B9", marginBottom: 0 }}>Alex Smith</p>
       <span style={{ color: "#B2AEAE" }}>Male</span>
     </div>
   </>,
@@ -231,7 +227,7 @@ const dates = [
 
 const data = [];
 
-for (let i = 0, j = 1; j <= 100; i++, j++) {
+for (let i = 0, j = 1; j <= 430; i++, j++) {
   data.push({
     key: j,
     name: names[i],
@@ -243,34 +239,6 @@ for (let i = 0, j = 1; j <= 100; i++, j++) {
   });
   if (i === 6) i = 0;
 }
-
-// const selectComponentClass = (props) => {
-//   return (
-//     <Select style={{ height: "fit-content" }}>
-//       {React.Children.map(props.children, (child) => {
-//         return React.cloneElement(child, {
-//           onClick: props.onChange,
-//         });
-//       })}
-//     </Select>
-//   );
-// };
-// selectComponentClass.Option = (props) => {
-//   return (
-//     <div
-//       style={{
-//         margin: 5,
-//         padding: 5,
-//         border: "1px solid black",
-//         borderRadius: 3,
-//         cursor: "pointer"
-//       }}
-//       onClick={() => props.onClick(props.value)}
-//     >
-//       {props.value}
-//     </div>
-//   );
-// };
 
 
 const ContentDash = () => {
@@ -331,7 +299,7 @@ const ContentDash = () => {
             prefix={<SearchOutlined style={{ color: "#BDBDBD" }} />}
           />
         </Col>
-        <Col  flex="10%">
+        <Col flex="10%">
           <Button
             size="large"
             style={{
@@ -380,10 +348,10 @@ const ContentDash = () => {
         rowSelection={rowSelection}
         columns={columns}
         dataSource={data}
-        style={{ maxWidth: "95%", }}
+        style={{ maxWidth: "95%" }}
         pagination={{
           showSizeChanger: true,
-          total: 100,
+          total: 430,
           showTotal: (total, range) =>
             `Showing ${range[0]} to ${range[1]} of ${total} entries`,
           size: "default",
