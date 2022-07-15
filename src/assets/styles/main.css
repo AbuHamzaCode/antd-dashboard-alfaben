@@ -1,0 +1,63 @@
+.layout-dashboard {
+    min-height: 100vh;
+    text-align: left;
+    position: relative;
+}
+@media (min-width: 992px) {
+    .layout-dashboard {
+      overflow: auto;
+    }
+}
+
+.layout-dashboard .trigger {
+    /* padding: 0 24px; */
+    margin: 10px 0 0 75%;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.layout-dashboard .trigger:hover {
+    color: #1890ff;
+}
+
+.layout-dashboard .logo {
+    margin: 0 16px 20px 20px;
+    display: inline-block;
+}
+
+.layout-dashboard .aside-footer {
+    display: block;
+    margin: 130px 0 33px 20px;
+}
+
+.layout-dashboard .site-layout-background {
+    background: #fff;
+}
+
+.layout-dashboard .header-breadcrumb {
+    display: flex;
+    margin: 20px 0 10px 20px;
+}
+
+.layout-dashboard .header-control {
+    justify-content: flex-end;
+    display: flex;
+}
+
+.ant-table .ant-table-container .ant-table-content table thead.ant-table-thead .ant-table-cell { 
+    background-color: #E7E5E5;
+    height: 60px;
+    font-size: medium;
+    font-weight: 600;
+    color: #666666;
+}
+
+.ant-table-pagination.ant-pagination {
+
+}
+
+.ant-select-single.ant-select-sm:not(.ant-select-customize-input) .ant-select-selector {
+    display: inline-block;
+}
